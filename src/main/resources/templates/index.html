@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="utf-8">
+<!-- CSS only -->
+<link href="../css/bootstrap.min.css" rel="stylesheet">
+<title>Index</title>
+<meta name="description" content="Basic">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no, user-scalable=no, minimal-ui">
+<!-- Call App Mode on ios devices -->
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<!-- Remove Tap Highlight on Windows Phone IE -->
+<meta name="msapplication-tap-highlight" content="no">
+<!-- base css -->
+<link rel="stylesheet" media="screen, print"
+	href="../css/vendors.bundle.css">
+<link rel="stylesheet" media="screen, print"
+	href="../css/app.bundle.css">
+<!-- Place favicon.ico in the root directory -->
+<link rel="apple-touch-icon" sizes="180x180"
+	href="../img/favicon/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32"
+	href="../img/favicon/favicon-32x32.png">
+<link rel="mask-icon" href="../img/favicon/safari-pinned-tab.svg"
+	color="#5bbad5">
+<link rel="stylesheet" media="screen, print"
+	href="../css/datagrid/datatables/datatables.bundle.css">
+
+</head>
+<body class="mod-bg-1 ">
+	<script src="../js/themesett.js"></script>
+	<div class="page-wrapper">
+		<div class="page-inner">
+			<div th:replace="~{/layouts/nav}"></div>
+			<div class="page-content-wrapper">
+				<div th:replace="~{/layouts/pageheader}"></div>
+				<!-- BEGIN Page Content -->
+				<!-- the #js-page-content id is needed for some plugins to initialize -->
+				<main id="js-page-content" role="main" class="page-content">
+					<ol class="breadcrumb page-breadcrumb">
+						<li class="breadcrumb-item"><a th:href="@{/}">Dashboard</a></li>
+						<li class="position-absolute pos-top pos-right d-none d-sm-block"><span
+							class="js-get-date"></span></li>
+					</ol>
+					<div class="subheader">
+						<h1 class="subheader-title">
+							<i class='subheader-icon fal fa-chart-area'></i> Bank <span
+								class='fw-300'>Dashboard</span>
+						</h1>
+						
+					</div>
+					<div class="row">
+						<div class="col-sm-6 col-xl-3">
+							<div
+								class="p-3 bg-primary-300 rounded overflow-hidden position-relative text-white mb-g">
+								<div class="">
+									<h3 class="display-4 d-block l-h-n m-0 fw-500">
+										<span th:text="${countclient}"></span><small class="m-0 l-h-n">Clients In Database</small>
+									</h3>
+								</div>
+								<i
+									class="fal fa-user position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n1"
+									style="font-size: 6rem"></i>
+							</div>
+						</div>
+						<div class="col-sm-6 col-xl-3">
+							<div
+								class="p-3 bg-warning-400 rounded overflow-hidden position-relative text-white mb-g">
+								<div class="">
+									<h3 class="display-4 d-block l-h-n m-0 fw-500">
+										$<span th:text="${summoney}"></span><small class="m-0 l-h-n">Total Money</small>
+									</h3>
+								</div>
+								<i
+									class="fal fa-gem position-absolute pos-right pos-bottom opacity-15  mb-n1 mr-n4"
+									style="font-size: 6rem;"></i>
+							</div>
+						</div>
+						<div class="col-sm-6 col-xl-3">
+							<div
+								class="p-3 bg-success-200 rounded overflow-hidden position-relative text-white mb-g">
+								<div class="">
+									<h3 class="display-4 d-block l-h-n m-0 fw-500">
+									<span th:text="${countcompte}"></span><small class="m-0 l-h-n">Total Bank Account</small>
+									</h3>
+								</div>
+								<i
+									class="fal fa-lightbulb position-absolute pos-right pos-bottom opacity-15 mb-n5 mr-n6"
+									style="font-size: 8rem;"></i>
+							</div>
+						</div>
+						<div class="col-sm-6 col-xl-3">
+							<div
+								class="p-3 bg-info-200 rounded overflow-hidden position-relative text-white mb-g">
+								<div class="">
+									<h3 class="display-4 d-block l-h-n m-0 fw-500">
+										$<span th:text="${topmoney}"></span> <small class="m-0 l-h-n">Top Account Money</small>
+									</h3>
+								</div>
+								<i
+									class="fal fa-globe position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n4"
+									style="font-size: 6rem;"></i>
+							</div>
+						</div>
+					</div>
+				</main>
+				<!-- this overlay is activated only when mobile menu is triggered -->
+				<div class="page-content-overlay" data-action="toggle"
+					data-class="mobile-nav-on"></div>
+				<!-- END Page Content -->
+
+				<div th:replace="~{/layouts/shortcuts}"></div>
+
+
+			</div>
+		</div>
+	</div>
+
+
+
+	<!-- JavaScript Bundle with Popper -->
+	<script src="../js/bootstrap.bundle.min.js"></script>
+	<script src="../js/jquery-3.6.0.min.js"></script>
+	<script src="../js/sweetalert.min.js"></script>
+	<script src="../js/clients.js"></script>
+	<script src="../js/vendors.bundle.js"></script>
+	<script src="../js/app.bundle.js"></script>
+	<script src="../js/datagrid/datatables/datatables.bundle.js"></script>
+	<script>
+		/* demo scripts for change table color */
+		/* change background */
+
+		$(document).ready(
+				function() {
+					$('#dt-basic-example').dataTable({
+						responsive : true
+					});
+
+					$('.js-thead-colors a').on(
+							'click',
+							function() {
+								var theadColor = $(this).attr("data-bg");
+								console.log(theadColor);
+								$('#dt-basic-example thead').removeClassPrefix(
+										'bg-').addClass(theadColor);
+							});
+
+					$('.js-tbody-colors a').on(
+							'click',
+							function() {
+								var theadColor = $(this).attr("data-bg");
+								console.log(theadColor);
+								$('#dt-basic-example').removeClassPrefix('bg-')
+										.addClass(theadColor);
+							});
+
+				});
+	</script>
+</body>
+</html>
